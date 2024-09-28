@@ -2,6 +2,7 @@ node_modules
 .git
 *.log
 Dockerfile
-README.md
 .gitignore
 /checkFolder
+
+README.md
