@@ -261,6 +261,26 @@ const renameVideo = (path, newPath) => {
 	});
 };
 
+function encodeInvalidCharacters(fileName) {
+	const invalidChars = ['\\', '/', ':', '*', '?', '"', '<', '>', '|'];
+
+	let encodedFileName = '';
+	for (let i = 0; i < fileName.length; i++) {
+		const char = fileName[i];
+		if (invalidChars.includes(char)) {
+			if (char === '*') {
+				encodedFileName += '%2A';
+			} else {
+				encodedFileName += encodeURIComponent(char);
+			}
+		} else {
+			encodedFileName += char;
+		}
+	}
+
+	return encodedFileName;
+}
+
 const generateRandomName = () => {
 	const characters =
 		'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
